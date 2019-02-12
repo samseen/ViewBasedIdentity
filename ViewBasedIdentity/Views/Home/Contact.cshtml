@@ -1,4 +1,16 @@
-﻿@{
+﻿@model ViewBasedIdentity.ViewModels.MyViewModel
+
+
+@if (Model.IsAdmin)
+{
+    <span>User is Admin</span>
+}
+else
+{
+    <span>User is not Admin</span>
+}
+
+@{
     ViewBag.Title = "Contact";
 }
 <h2>@ViewBag.Title.</h2>

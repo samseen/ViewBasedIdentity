@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViewBasedIdentity.ViewModels;
 
 namespace ViewBasedIdentity.Controllers
 {
@@ -13,18 +14,24 @@ namespace ViewBasedIdentity.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            var VM = new MyViewModel();
+            VM.IsAdmin = false;
 
-            return View();
+            return View(VM);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+            var VM = new MyViewModel();
+            VM.IsAdmin = true;
 
-            return View();
+            return View(VM);
         }
     }
 }
